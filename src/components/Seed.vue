@@ -5,7 +5,7 @@
       <input-password
         v-model="password"
         ref="password"
-        placeholder="Password"
+        :placeholder="$t('seed.password')"
         inputGroupClass="neu-input-group"
         :inputClass="[
                     isIncorrectPassword ? 'incorrect-password' : '',
@@ -17,7 +17,7 @@
       <small
         class="mt-2 text-danger error float-right"
         v-show="isIncorrectPassword"
-      >Incorrect password</small>
+      >{{ $t("seed.incorrectPassword") }}</small>
 
       <b-button
         variant="success"
@@ -26,7 +26,7 @@
         @click="fetchSeed"
       >
         {{
-        isLoadingSeed ? "Decrypting Secret Words..." : "View Secret Words"
+        isLoadingSeed ? $t("seed.decrypting") : $t("seed.view")
         }}
       </b-button>
     </div>

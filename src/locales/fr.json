@@ -1,0 +1,58 @@
+{
+  "loading": {
+    "manager": "Manager en cours de chargement...",
+    "middleware": "Middleware en cours de chargement ...",
+    "bitcoinCore": "Bitcoin Core en cours de chargement...",
+    "lnd": "LND en cours de chargement..."
+  },
+  "global": {
+    "install": "Installer",
+    "starting": "Lancement de la mise à jour",
+    "newVersion": "Umbrel v{version} est maintenant disponible"
+  },
+  "dashboard": {
+    "logout": "Déconnexion",
+    "downloadBackup": "Télécharger la sauvegarde des vos channels",
+    "backupWarning": "Veuillez téléchager la dernière version de sauvegarde de vos canaux de paiements avant de lancer la mise à jour et notez bien vos 24 mots de récupération (si ce n'est pas déjà fait). Vous en aurez besoin pour récupérer vos fonds si quelque chose ne se passe pas comme prévu ."
+  },
+  "settings": {
+    "title": "paramètres",
+    "viewLogs": "Voir les journaux système",
+    "torTraffic": "Trafic relayé par Tor",
+    "runOnTor": "Faire tourner {component} sur Tor",
+    "remoteAccess": "Accès à distance",
+    "remoteAccessDetails": "Accèdez à votre Umbrel via le navigateur Tor, en utilisant l'adresse suivante",
+    "account": "Compte",
+    "backup": "Sauvegarde",
+    "backupDetails": "Chiffre et sauvegarde automatiquement vos canaux de paiements.",
+    "learnMore": "En savoir plus",
+    "disableBackup": "Désolé, la sauvegarde ne peut pas être désactivée pour l'instant",
+    "lastBackup": "Dernière sauvegarde le {date}",
+    "lastBackupFail": "Échec de la dernière sauvegarde le {date}",
+    "secretWords": "Mots secrets",
+    "secretWordsLow": "mots secrets",
+    "secretWordsDetails": "Noter vos 24 mots secrets",
+    "secretWordsView": "Voir",
+    "password": "Mot de passe",
+    "passwordDetails": "Changer le mot de passe d'Umbrel",
+    "passwordChange": "Changer",
+    "passwordChangeDetails": "changer le mot de passe",
+    "passwordChanging": "Changement du mot de passe...",
+    "passwordChangeCap": "Changer le mot de passe",
+    "passwordCurrent": "Mot de passe actuel",
+    "passwordNew": "Nouveau mot de passe",
+    "passwordConfirmNew": "Confirmer le nouveau mot de passe",
+    "passwordWarning": "⚠ Attention, il n'existe aucun bouton \"Mot de passe oublié\". Si vous perdez votre mot de passe, vous devrez récupérer votre Umbrel en utilisant vos mots secret de récupération et la sauvegarde de vos canaux de paiement",
+    "system": "Système",
+    "shutdown": "Arrêter",
+    "shutdownDetails": "Éteindre votre Umbrel",
+    "restart": "Redémarrer",
+    "restartDetails": "Redémarrer votre Umbrel",
+    "confirmation": "Voulez-vous continuer ?",
+    "restartWarning": "N'oubliez pas de vous connecter au tableau de bord après le redémarrage (requis pour remettre en ligne votre noeud Umbrel).",
+    "version": "Version d'Umbrel",
+    "versionOk": "Votre Umbrel est à jour",
+    "versionCheck": "Vérifier les mises à jour",
+    "versionCheking": "Vérification des mises à jour"
+  }
+}

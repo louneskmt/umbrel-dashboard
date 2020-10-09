@@ -152,6 +152,7 @@ export default {
   created() {
     //check if system is updating
     this.$store.dispatch("system/getUpdateStatus");
+    this.$store.dispatch("user/getLocale");
 
     //for 100vh consistency
     this.updateViewPortHeightCSS();

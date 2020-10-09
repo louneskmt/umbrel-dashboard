@@ -2,7 +2,7 @@
   <div class="p-sm-2">
     <div class="my-3 pb-2">
       <div class="d-flex justify-content-between align-items-center">
-        <h1>settings</h1>
+        <h1>{{ $t("settings.title") }}</h1>
         <b-dropdown variant="link" toggle-class="text-decoration-none p-0" no-caret right>
           <template v-slot:button-content>
             <svg
@@ -32,7 +32,7 @@
               />
             </svg>
           </template>
-          <b-dropdown-item href="/logs" target="_blank">View system logs</b-dropdown-item>
+          <b-dropdown-item href="/logs" target="_blank">{{ $t("settings.viewLogs") }}</b-dropdown-item>
         </b-dropdown>
       </div>
     </div>
@@ -43,14 +43,14 @@
           header="Tor"
           :status="{ text: 'Running', variant: 'success', blink: false }"
           title="100%"
-          sub-title="Traffic relayed through Tor"
+          :sub-title="$t('settings.torTraffic')"
           icon="icon-app-tor.svg"
         >
           <div class="pt-2">
             <div class="d-flex w-100 justify-content-between px-3 px-lg-4 mb-4">
               <div>
                 <span class="d-block">Bitcoin</span>
-                <small class="d-block" style="opacity: 0.4">Run Bitcoin Core on Tor</small>
+                <small class="d-block" style="opacity: 0.4">{{ $t("settings.runOnTor", { component: "Bitcoin Core"}) }}</small>
               </div>
               <toggle-switch
                 class="align-self-center"
@@ -61,7 +61,7 @@
             <div class="d-flex w-100 justify-content-between px-3 px-lg-4 mb-4">
               <div>
                 <span class="d-block">Lightning Network</span>
-                <small class="d-block" style="opacity: 0.4">Run Lightning on Tor</small>
+                <small class="d-block" style="opacity: 0.4">{{ $t("settings.runOnTor", { component: "Lightning"}) }}</small>
               </div>
               <toggle-switch
                 class="align-self-center"
@@ -72,11 +72,11 @@
             <div class="px-3 px-lg-4 mb-4">
               <div class="d-flex justify-content-between w-100 mb-3">
                 <div class="w-75">
-                  <span class="d-block">Remote access</span>
+                  <span class="d-block">{{ $t("settings.remoteAccess") }}</span>
                   <small
                     class="d-block"
                     style="opacity: 0.4"
-                  >Remotely access your Umbrel via Tor Browser on the following URL</small>
+                  >{{ $t("settings.remoteAccessDetails") }}</small>
                 </div>
                 <toggle-switch
                   class="align-self-center"
@@ -91,24 +91,24 @@
         </card-widget>
       </b-col>
       <b-col col cols="12" md="6" xl="4">
-        <card-widget header="Account" :loading="isChangingPassword">
+        <card-widget :header="$t('settings.account')" :loading="isChangingPassword">
           <div class="pt-2">
             <div class="d-flex w-100 justify-content-between px-3 px-lg-4 mb-1">
               <div class="w-75">
-                <span class="d-block">Backup</span>
+                <span class="d-block">{{ $t("settings.backup") }}</span>
                 <small class="d-block">
-                  <span style="opacity: 0.4">Automatically encrypt and backup your payment channels.</span>
+                  <span style="opacity: 0.4">{{ $t("settings.backupDetails") }}</span>
                   &nbsp;
                   <a
                     href="https://github.com/getumbrel/umbrel/blob/master/scripts/backup/README.md"
                     target="blank"
-                  >Learn more</a>
+                  >{{ $t("settings.learnMore") }}</a>
                 </small>
               </div>
               <toggle-switch
                 class="align-self-center"
                 disabled
-                tooltip="Sorry, backup cannot be disabled for now"
+                :tooltip="$t('disableBackup')"
               ></toggle-switch>
             </div>
             <div class="px-3 px-lg-4 mb-4" v-if="backupStatus.status">
@@ -119,9 +119,7 @@
                 v-if="backupStatus.status === 'failed'"
               ></b-icon>
               <small style="opacity: 0.4">
-                Last backup
-                <span v-if="backupStatus.status === 'failed'">failed</span>
-                at {{ getReadableTime(backupStatus.timestamp) }}
+               {{ backupStatus.status === 'failed' ? $t("settings.lastBackupFail", { date: getReadableTime(backupStatus.timestamp)}) : $t("settings.lastBackup", { date: getReadableTime(backupStatus.timestamp)}) }} 
               </small>
             </div>
             <div class="mb-4" v-else></div>
@@ -129,16 +127,16 @@
           <div class="pt-0">
             <div class="d-flex w-100 justify-content-between px-3 px-lg-4 mb-4">
               <div>
-                <span class="d-block">Secret words</span>
-                <small class="d-block" style="opacity: 0.4">Note down your 24 secret words</small>
+                <span class="d-block">{{ $t("settings.secretWords") }}</span>
+                <small class="d-block" style="opacity: 0.4">{{ $t("settings.secretWordsDetails") }}</small>
               </div>
 
-              <b-button variant="outline-primary" size="sm" v-b-modal.seed-modal>View</b-button>
+              <b-button variant="outline-primary" size="sm" v-b-modal.seed-modal>{{ $t("settings.secretWordsView") }}</b-button>
 
               <b-modal id="seed-modal" centered hide-footer>
                 <template v-slot:modal-header="{ close }">
                   <div class="px-2 px-sm-3 pt-2 d-flex justify-content-between w-100">
-                    <h3>secret words</h3>
+                    <h3>{{ $t("settings.secretWordsLow") }}</h3>
                     <!-- Emulate built in modal header close button action -->
                     <a href="#" class="align-self-center" v-on:click.stop.prevent="close">
                       <svg
@@ -165,8 +163,8 @@
           <div class="pt-0">
             <div class="d-flex w-100 justify-content-between px-3 px-lg-4 mb-4">
               <div>
-                <span class="d-block">Password</span>
-                <small class="d-block" style="opacity: 0.4">Change the password of your Umbrel</small>
+                <span class="d-block">{{ $t("settings.password") }}</span>
+                <small class="d-block" style="opacity: 0.4">{{ $t("settings.passwordDetails") }}</small>
               </div>
 
               <b-button
@@ -174,12 +172,12 @@
                 size="sm"
                 v-b-modal.change-password-modal
                 :disabled="isChangingPassword"
-              >Change</b-button>
+              >{{ $t("settings.passwordChange") }}</b-button>
 
               <b-modal id="change-password-modal" centered hide-footer>
                 <template v-slot:modal-header="{ close }">
                   <div class="px-2 px-sm-3 pt-2 d-flex justify-content-between w-100">
-                    <h3>change password</h3>
+                    <h3>{{ $t("settings.passwordChangeDetails") }}</h3>
                     <!-- Emulate built in modal header close button action -->
                     <a href="#" class="align-self-center" v-on:click.stop.prevent="close">
                       <svg
@@ -200,7 +198,7 @@
                   </div>
                 </template>
                 <div class="px-4 pb-2">
-                  <label class="sr-onlsy" for="input-withdrawal-amount">Current password</label>
+                  <label class="sr-onlsy" for="input-withdrawal-amount">{{ $t("settings.passwordCurrent") }}</label>
                   <input-password
                     v-model="currentPassword"
                     ref="password"
@@ -209,7 +207,7 @@
                     :disabled="isChangingPassword"
                   />
                   <div class="py-2"></div>
-                  <label class="sr-onlsy" for="input-withdrawal-amount">New password</label>
+                  <label class="sr-onlsy" for="input-withdrawal-amount">{{ $t("settings.passwordNew") }}</label>
                   <input-password
                     v-model="newPassword"
                     ref="password"
@@ -218,7 +216,7 @@
                     :disabled="isChangingPassword"
                   />
                   <div class="py-2"></div>
-                  <label class="sr-onlsy" for="input-withdrawal-amount">Confirm new password</label>
+                  <label class="sr-onlsy" for="input-withdrawal-amount">{{ $t("settings.passwordConfirmNew") }}</label>
                   <input-password
                     v-model="confirmNewPassword"
                     ref="password"
@@ -229,9 +227,7 @@
                   <div class="py-2"></div>
                   <b-alert variant="warning" show>
                     <small>
-                      ⚠ Remember, there is no "Forgot Password" button. If you lose
-                      your password, you will have to recover your Umbrel using your 24
-                      secret words and channel backup.
+                      {{ $t("settings.passwordWarning") }}
                     </small>
                   </b-alert>
                   <b-button
@@ -240,7 +236,7 @@
                     size="lg"
                     :disabled="isChangingPassword || !isAllowedToChangePassword"
                     @click="changePassword"
-                  >{{ isChangingPassword ? 'Changing password...' : 'Change password'}}</b-button>
+                  >{{ isChangingPassword ? $t("settings.passwordChanging") : $t("settings.passwordChangeCap")}}</b-button>
                 </div>
               </b-modal>
             </div>
@@ -249,53 +245,53 @@
         </card-widget>
       </b-col>
       <b-col col cols="12" md="6" xl="4">
-        <card-widget header="System" :loading="isCheckingForUpdate || isUpdating">
+        <card-widget :header="$t('settings.system')" :loading="isCheckingForUpdate || isUpdating">
           <div class="pt-2">
             <div class="d-flex w-100 justify-content-between px-3 px-lg-4 mb-4">
               <div>
-                <span class="d-block">Shutdown</span>
-                <small class="d-block" style="opacity: 0.4">Power off your Umbrel</small>
+                <span class="d-block">{{ $t("settings.shutdown") }}</span>
+                <small class="d-block" style="opacity: 0.4">{{ $t("settings.shutdownDetails") }}</small>
               </div>
-              <b-button variant="outline-danger" size="sm" @click="shutdownPrompt">Shutdown</b-button>
+              <b-button variant="outline-danger" size="sm" @click="shutdownPrompt">{{ $t("settings.shutdown") }}</b-button>
             </div>
           </div>
           <div class="pt-0">
             <div class="d-flex w-100 justify-content-between px-3 px-lg-4 mb-4">
               <div>
-                <span class="d-block">Restart</span>
-                <small class="d-block" style="opacity: 0.4">Restart your Umbrel</small>
+                <span class="d-block">{{ $t("settings.restart") }}</span>
+                <small class="d-block" style="opacity: 0.4">{{ $t("settings.restartDetails") }}</small>
               </div>
 
-              <b-button variant="outline-danger" size="sm" @click="rebootPrompt">Restart</b-button>
+              <b-button variant="outline-danger" size="sm" @click="rebootPrompt">{{ $t("settings.restart") }}</b-button>
               <b-modal
                 ref="reboot-modal"
-                title="Are you sure?"
+                :title="$t('settings.confirmation')"
                 no-close-on-backdrop
                 no-close-on-esc
                 @ok="reboot($event)"
               >
                 <div>
-                  <p>Don't forget to login to your dashboard after the restart is complete (required only once after a restart for your Umbrel to be online).</p>
+                  <p>{{ $t("settings.restartWarning") }}</p>
                 </div>
               </b-modal>
             </div>
           </div>
           <div class="px-3 px-lg-4 pb-4">
             <div class="w-100 d-flex justify-content-between mb-1">
-              <span class="align-self-end">Umbrel Version</span>
+              <span class="align-self-end">{{ $t("settings.version") }}</span>
               <span class="font-weight-normal mb-0">{{ version }}</span>
             </div>
             <div v-show="!isCheckingForUpdate">
               <span v-show="!availableUpdate.version">
                 <b-icon icon="check-circle-fill" variant="success"></b-icon>
-                <small class="ml-1" style="opacity: 0.4">Your Umbrel is on the latest version</small>
+                <small class="ml-1" style="opacity: 0.4">{{ $t("settings.versionOk") }}</small>
               </span>
               <div v-show="availableUpdate.version">
                 <span class="d-block">
                   <b-icon icon="bell-fill" variant="success"></b-icon>
                   <small
                     class="text-muted ml-1"
-                  >Umbrel v{{availableUpdate.version}} is now available to install</small>
+                  >{{ $t("global.newVersion", {version: availableUpdate.version}) }}</small>
                 </span>
                 <b-button
                   class="mt-2"
@@ -303,7 +299,7 @@
                   size="sm"
                   @click.prevent="confirmUpdate"
                   :disabled="isUpdating"
-                >Install now</b-button>
+                >{{ $t("global.install") }}</b-button>
               </div>
             </div>
           </div>
@@ -315,7 +311,7 @@
             @click="checkForUpdate"
           >
             <b-icon icon="arrow-repeat" class="mr-2" :animation="isCheckingForUpdate ? 'spin' : ''"></b-icon>
-            {{ isCheckingForUpdate ? "Checking for update" : "Check for update"}}
+            {{ isCheckingForUpdate ? $t("settings.versionChecking") : $t("settings.versionCheck")}}
           </b-button>
         </card-widget>
       </b-col>

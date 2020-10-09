@@ -1,3 +1,65 @@
 {
-  "message": "hello i18n !!"
+  "loading": {
+    "manager": "Loading Manager...",
+    "middleware": "Loading Middleware...",
+    "bitcoinCore": "Loading Bitcoin Core...",
+    "lnd": "Loading LND..."
+  },
+  "global": {
+    "install": "Install now",
+    "starting": "Starting update",
+    "newVersion": "Umbrel v{version} is now available to install",
+    "password": "Password",
+    "incorrectPassword": "Incorrect password"
+  },
+  "seed": {
+    "decrypting": "Decrypting Secret Words...",
+    "view": "View Secret Words",
+    "password": "Password",
+    "incorrectPassword": "Incorrect password"
+  },
+  "dashboard": {
+    "logout": "Log out",
+    "downloadBackup": "Download channel backup",
+    "backupWarning": "Please download the latest backup of your payment channels before updating and make sure to note down your 24 secret words (if you haven't already). You'll need these to recover your funds in case something goes wrong."
+  },
+  "settings": {
+    "title": "settings",
+    "viewLogs": "View system logs",
+    "torTraffic": "Traffic relayed through Tor",
+    "runOnTor": "Run {component} on Tor",
+    "remoteAccess": "Remote access",
+    "remoteAccessDetails": "Remotely access your Umbrel via Tor Browser on the following URL",
+    "account": "Account",
+    "backup": "Backup",
+    "backupDetails": "Automatically encrypt and backup your payment channels.",
+    "learnMore": "Learn more",
+    "disableBackup": "Sorry, backup cannot be disabled for now",
+    "lastBackup": "Last backup at {date}",
+    "lastBackupFail": "Last backup failed at {date}",
+    "secretWords": "Secret words",
+    "secretWordsLow": "secret words",
+    "secretWordsDetails": "Note down your 24 secret words",
+    "secretWordsView": "View",
+    "passwordDetails": "Changer le mot de passe d'Umbrel",
+    "passwordChange": "Change",
+    "passwordChangeDetails": "change password",
+    "passwordChanging": "Changing password...",
+    "passwordChangeCap": "Change password",
+    "passwordCurrent": "Current password",
+    "passwordNew": "New password",
+    "passwordConfirmNew": "Confirm new password",
+    "passwordWarning": "⚠ Remember, there is no \"Forgot Password\" button. If you lose your password, you will have to recover your Umbrel using your 24 secret words and channel backup.",
+    "system": "System",
+    "shutdown": "Shutdown",
+    "shutdownDetails": "Power off your Umbrel",
+    "restart": "Restart",
+    "restartDetails": "Restart your Umbrel",
+    "confirmation": "Are you sure?",
+    "restartWarning": "Don't forget to login to your dashboard after the restart is complete (required only once after a restart for your Umbrel to be online).",
+    "version": "Umbrel Version",
+    "versionOk": "Your Umbrel is on the latest version",
+    "versionCheck": "Check for update",
+    "versionCheking": "Checking for update"
+  }
 }

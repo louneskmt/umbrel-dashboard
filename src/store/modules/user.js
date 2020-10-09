@@ -1,9 +1,11 @@
 import API from "@/helpers/api";
 import router from "@/router";
+import i18n from "@/i18n";
 
 // Initial state
 const state = () => ({
   name: "",
+  locale: "en",
   jwt: window.localStorage.getItem("jwt") || "",
   registered: true,
   seed: []
@@ -20,6 +22,11 @@ const mutations = {
   },
   setName(state, name) {
     state.name = name;
+  },
+  setLocale(state, locale) {
+    if (!locale) return;
+    state.locale = locale;
+    i18n.locale = locale;
   },
   setSeed(state, seed) {
     state.seed = seed;
@@ -69,6 +76,13 @@ const actions = {
       `${process.env.VUE_APP_MANAGER_API_URL}/v1/account/info`
     );
     commit("setName", name);
+  },
+
+  async getLocale({ commit }) {
+    const { locale } = await API.get(
+      `${process.env.VUE_APP_MANAGER_API_URL}/v1/account/info`
+    );
+    commit("setLocale", locale);
   },
 
   async getSeed({ commit, state, dispatch }, plainTextPassword) {
