@@ -6,6 +6,7 @@ import router from "./router";
 import store from "./store";
 
 import { satsToBtc } from "@/helpers/units";
+import i18n from "./i18n";
 
 // import "@/global-styles/designsystem.scss";
 // import 'bootstrap/dist/css/bootstrap.css'
@@ -62,5 +63,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount("#app");
